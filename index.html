@@ -22,7 +22,6 @@
       align-items: center;
       background-color: var(--bg-color);
       font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
-      /* 커스텀 장갑 커서 */
       cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M10 28c-1.1 0-2-.9-2-2V14.5c0-.3.2-.5.5-.5s.5.2.5.5V26h2v-17.5c0-.3.2-.5.5-.5s.5.2.5.5V26h2V7.5c0-.3.2-.5.5-.5s.5.2.5.5V26h2V9.5c0-.3.2-.5.5-.5s.5.2.5.5V22.2l3.2 3.2c.4.4.4 1 0 1.4l-.7.7c-.4.4-1 .4-1.4 0L18 24.1V26c0 1.1-.9 2-2 2h-6z' fill='white' stroke='black' stroke-width='1.5'/%3E%3C/svg%3E") 8 4, auto;
     }
 
@@ -35,7 +34,6 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     }
 
-    /* 1. 원본 이미지의 중앙 팝업 가리기 */
     .mask-overlay {
       position: absolute;
       top: 22%;
@@ -56,7 +54,6 @@
       z-index: 1;
     }
 
-    /* 2. 왼쪽 캐릭터 애니메이션 */
     .queen-char {
       position: absolute;
       top: 15%;
@@ -72,7 +69,6 @@
       50% { transform: translateY(-15px) rotate(1.5deg); }
     }
 
-    /* 3. 단일 메인 버튼 */
     .main-btn {
       position: absolute;
       bottom: 22%;
@@ -99,7 +95,6 @@
       50% { box-shadow: 0 15px 35px rgba(255, 93, 168, 0.8), 0 0 15px rgba(255, 255, 255, 0.8); }
     }
 
-    /* 4. 모달 팝업 */
     .modal {
       position: absolute;
       inset: 0;
@@ -121,7 +116,6 @@
       align-items: center;
     }
 
-    /* 캔 디자인 및 애니메이션 */
     .can-visual {
       width: clamp(180px, 20vw, 300px);
       aspect-ratio: 1 / 1.6;
@@ -188,12 +182,10 @@
 <body>
 
   <div class="app-container">
-    <img src="queen_anim.png" alt="여왕 캐릭터" class="queen-char">
-
+    <img src="queen_anim.jpg" alt="여왕 캐릭터" class="queen-char">
     <div class="mask-overlay">
       <span>규칙 대기중...✨</span>
     </div>
-
     <button class="main-btn" id="drawBtn">🥤 규칙 캔 뽑기 ✨</button>
 
     <div class="modal" id="modal">
@@ -235,13 +227,11 @@
     const resultTitle = document.getElementById('resultTitle');
     const canVisual = document.querySelector('.can-visual');
 
-    // 랜덤 뽑기 실행
     drawBtn.addEventListener('click', () => {
       const picked = rules[Math.floor(Math.random() * rules.length)];
       resultNo.textContent = picked.no;
       resultTitle.textContent = picked.title;
       
-      // 애니메이션 재실행을 위한 트릭
       canVisual.style.animation = 'none';
       void canVisual.offsetWidth;
       canVisual.style.animation = 'canPop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
@@ -249,7 +239,6 @@
       modal.classList.add('show');
     });
 
-    // 닫기 로직
     const closeModal = () => modal.classList.remove('show');
     closeBtn.addEventListener('click', closeModal);
     modal.addEventListener('click', (e) => { if(e.target === modal) closeModal(); });
