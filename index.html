@@ -28,60 +28,42 @@
     .app-container {
       position: relative;
       width: min(100vw, 1448px);
-      aspect-ratio: 1448 / 1086;
-      background: url('kawaii_rule_vending_machine_interface.jpg') center/cover no-repeat;
+      aspect-ratio: 1024 / 768; /* 새 이미지 비율에 맞춤 */
+      background: url('bg.jpg') center/contain no-repeat;
       overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     }
 
-    .mask-overlay {
-      position: absolute;
-      top: 22%;
-      left: 31%;
-      width: 38%;
-      height: 55%;
-      background: #ffb1cba3;
-      backdrop-filter: blur(8px);
-      border-radius: 24px;
-      border: 4px dashed #ff5da8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #ff2a85;
-      font-size: 2vw;
-      font-weight: 900;
-      box-shadow: inset 0 0 30px rgba(255, 93, 168, 0.3);
-      z-index: 1;
-    }
+    /* 꼼수 가림막 삭제! 깨끗한 배경 그대로 사용 */
 
     .queen-char {
       position: absolute;
-      top: 15%;
-      left: 1%;
-      width: 28%;
+      bottom: 2%;
+      left: 2%;
+      height: 85%; /* 새 전신 캐릭터 비율에 맞게 조정 */
       z-index: 2;
       animation: idleFloat 3s ease-in-out infinite;
       pointer-events: none;
+      filter: drop-shadow(5px 10px 15px rgba(0,0,0,0.3));
     }
 
     @keyframes idleFloat {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-15px) rotate(1.5deg); }
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
     }
 
     .main-btn {
       position: absolute;
-      bottom: 22%;
+      bottom: 30%; /* 자판기 화면 안쪽 중앙쯤으로 배치 */
       left: 50%;
       transform: translateX(-50%);
-      padding: 1vw 3vw;
-      font-size: clamp(20px, 2.5vw, 40px);
+      padding: 1.5vw 4vw;
+      font-size: clamp(24px, 3vw, 45px);
       font-weight: 900;
       color: white;
       background: linear-gradient(135deg, #ff5da8, #ffb161);
-      border: 4px solid white;
+      border: 6px solid white;
       border-radius: 50px;
-      box-shadow: 0 10px 20px rgba(255, 93, 168, 0.4);
+      box-shadow: 0 10px 20px rgba(255, 93, 168, 0.5);
       z-index: 5;
       cursor: inherit;
       animation: btnPulse 1.5s infinite;
@@ -92,7 +74,7 @@
 
     @keyframes btnPulse {
       0%, 100% { box-shadow: 0 10px 20px rgba(255, 93, 168, 0.4); }
-      50% { box-shadow: 0 15px 35px rgba(255, 93, 168, 0.8), 0 0 15px rgba(255, 255, 255, 0.8); }
+      50% { box-shadow: 0 15px 40px rgba(255, 93, 168, 0.9), 0 0 20px rgba(255, 255, 255, 0.8); }
     }
 
     .modal {
@@ -116,13 +98,14 @@
       align-items: center;
     }
 
+    /* 코드로 직접 그린 캔 이미지 (이미지 파일 필요 없음!) */
     .can-visual {
-      width: clamp(180px, 20vw, 300px);
+      width: clamp(200px, 22vw, 320px);
       aspect-ratio: 1 / 1.6;
       background: linear-gradient(110deg, #ff5fa8, #ffb3d8);
       border-radius: 20% / 10%;
-      border: 6px solid white;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4), inset 15px 0 20px rgba(255,255,255,0.4);
+      border: 8px solid white;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.5), inset 15px 0 25px rgba(255,255,255,0.5);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -132,22 +115,22 @@
     }
 
     @keyframes canPop {
-      0% { transform: scale(0) translateY(100px); opacity: 0; }
-      100% { transform: scale(1) translateY(0); opacity: 1; }
+      0% { transform: scale(0) translateY(150px) rotate(-10deg); opacity: 0; }
+      100% { transform: scale(1) translateY(0) rotate(0deg); opacity: 1; }
     }
 
-    .can-label { font-size: 1.5vw; font-weight: 800; margin-bottom: 5px; }
-    .can-number { font-size: 6vw; font-weight: 900; line-height: 1; text-shadow: 3px 3px 0 rgba(0,0,0,0.2); }
+    .can-label { font-size: 1.8vw; font-weight: 800; margin-bottom: 5px; text-shadow: 2px 2px rgba(0,0,0,0.2); }
+    .can-number { font-size: 7vw; font-weight: 900; line-height: 1; text-shadow: 4px 4px 0 rgba(0,0,0,0.2); }
     
     .rule-title {
-      margin-top: 20px;
+      margin-top: 25px;
       background: white;
       color: var(--primary);
-      padding: 15px 30px;
-      border-radius: 30px;
-      font-size: clamp(20px, 2vw, 32px);
+      padding: 18px 35px;
+      border-radius: 40px;
+      font-size: clamp(22px, 2.5vw, 36px);
       font-weight: 900;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.3);
       animation: fadeUp 0.5s ease 0.3s both;
     }
 
@@ -158,40 +141,32 @@
 
     .close-btn {
       position: absolute;
-      top: -10%;
-      right: -10%;
-      width: 50px;
-      height: 50px;
+      top: -15%;
+      right: -15%;
+      width: 60px;
+      height: 60px;
       background: white;
       border: none;
       border-radius: 50%;
-      font-size: 30px;
+      font-size: 40px;
       font-weight: bold;
       color: #333;
       cursor: inherit;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    }
-
-    @media (max-width: 768px) {
-      .mask-overlay { font-size: 4vw; }
-      .can-number { font-size: 15vw; }
-      .can-label { font-size: 4vw; }
+      box-shadow: 0 5px 20px rgba(0,0,0,0.4);
     }
   </style>
 </head>
 <body>
 
   <div class="app-container">
-    <img src="queen_anim.jpg" alt="여왕 캐릭터" class="queen-char">
-    <div class="mask-overlay">
-      <span>규칙 대기중...✨</span>
-    </div>
-    <button class="main-btn" id="drawBtn">🥤 규칙 캔 뽑기 ✨</button>
+    <img src="queen.png" alt="여왕 캐릭터" class="queen-char">
+    
+    <button class="main-btn" id="drawBtn">🥤 꿀잼 규칙 뽑기 ✨</button>
 
     <div class="modal" id="modal">
       <div class="popup-content">
         <button class="close-btn" id="closeBtn">&times;</button>
-        <div class="can-visual">
+        <div class="can-visual" id="canBg">
           <div class="can-label">RULE</div>
           <div class="can-number" id="resultNo">00</div>
         </div>
@@ -202,22 +177,22 @@
 
   <script>
     const rules = [
-      { no: "01", title: "꽝, 유잼킹 생존" },
-      { no: "02", title: "물 한 모금" },
-      { no: "03", title: "3분 존댓말 모드" },
-      { no: "04", title: "3분 사서 모드" },
-      { no: "05", title: "주캐 금지 1판" },
-      { no: "06", title: "랜덤 영웅 1판" },
-      { no: "07", title: "욕 금지 5분" },
-      { no: "08", title: "죽을 때마다 사과" },
-      { no: "09", title: "상대 칭찬 1판" },
-      { no: "10", title: "궁극기 허가제" },
-      { no: "11", title: "채팅 후보 3개 중 선택" },
-      { no: "12", title: "오늘의 칭호 하사" },
-      { no: "13", title: "닉네임 삼행시" },
-      { no: "14", title: "30초 칭찬 감옥" },
-      { no: "15", title: "감독권 1판" },
-      { no: "16", title: "공포게임 10분 적립" }
+      { no: "01", title: "꽝, 유잼킹 생존", color: "linear-gradient(110deg, #ff5fa8, #ffb3d8)" },
+      { no: "02", title: "물 한 모금", color: "linear-gradient(110deg, #55cde9, #9ad8ff)" },
+      { no: "03", title: "3분 존댓말 모드", color: "linear-gradient(110deg, #62d6c7, #8fe7ff)" },
+      { no: "04", title: "3분 사서 모드", color: "linear-gradient(110deg, #79d88e, #d6f27b)" },
+      { no: "05", title: "주캐 금지 1판", color: "linear-gradient(110deg, #ffc44e, #ffcc80)" },
+      { no: "06", title: "랜덤 영웅 1판", color: "linear-gradient(110deg, #55cde9, #9ad8ff)" },
+      { no: "07", title: "욕 금지 5분", color: "linear-gradient(110deg, #ff5fa8, #ffb3d8)" },
+      { no: "08", title: "죽을 때마다 사과", color: "linear-gradient(110deg, #9d7bff, #bba2ff)" },
+      { no: "09", title: "상대 칭찬 1판", color: "linear-gradient(110deg, #ffc44e, #ffcc80)" },
+      { no: "10", title: "궁극기 허가제", color: "linear-gradient(110deg, #9d7bff, #bba2ff)" },
+      { no: "11", title: "채팅 후보 3개 중 선택", color: "linear-gradient(110deg, #62d6c7, #8fe7ff)" },
+      { no: "12", title: "오늘의 칭호 하사", color: "linear-gradient(110deg, #9d7bff, #bba2ff)" },
+      { no: "13", title: "닉네임 삼행시", color: "linear-gradient(110deg, #ff5fa8, #ffb3d8)" },
+      { no: "14", title: "30초 칭찬 감옥", color: "linear-gradient(110deg, #55cde9, #9ad8ff)" },
+      { no: "15", title: "감독권 1판", color: "linear-gradient(110deg, #ffc44e, #ffcc80)" },
+      { no: "16", title: "공포게임 10분 적립", color: "linear-gradient(110deg, #9d7bff, #bba2ff)" }
     ];
 
     const drawBtn = document.getElementById('drawBtn');
@@ -226,11 +201,13 @@
     const resultNo = document.getElementById('resultNo');
     const resultTitle = document.getElementById('resultTitle');
     const canVisual = document.querySelector('.can-visual');
+    const canBg = document.getElementById('canBg');
 
     drawBtn.addEventListener('click', () => {
       const picked = rules[Math.floor(Math.random() * rules.length)];
       resultNo.textContent = picked.no;
       resultTitle.textContent = picked.title;
+      canBg.style.background = picked.color; // 캔 색상 자동 변경
       
       canVisual.style.animation = 'none';
       void canVisual.offsetWidth;
